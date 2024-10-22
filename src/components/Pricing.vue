@@ -57,11 +57,11 @@ export default {
 
     data() {
         return {
-            publishableKey: process.env.VUE_APP_STRIPE_API_KEY,
+            publishableKey: process.env.VUE_APP_STRIPE_API_PROD_KEY,
             stripeLoading: false,
             lineItems: [
                 {
-                    price: process.env.VUE_APP_STRIPE_PRICE_ID, // The id of the recurring price you created in your Stripe dashboard
+                    price: process.env.VUE_APP_STRIPE_PRICE_PROD_ID, // The id of the recurring price you created in your Stripe dashboard
                     quantity: 1,
                 },
             ],

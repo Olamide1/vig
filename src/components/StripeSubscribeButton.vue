@@ -16,10 +16,10 @@ export default {
         buttonColor: String, // | 'is-success' | 'is-primary',
     },
     data() {
-        this.publishableKey = process.env.VUE_APP_STRIPE_API_KEY
+        this.publishableKey = process.env.VUE_APP_STRIPE_API_PROD_KEY
         this.lineItems = [
             {
-                price: process.env.VUE_APP_STRIPE_PRICE_ID,
+                price: process.env.VUE_APP_STRIPE_PRICE_PROD_ID,
                 quantity: 1,
             }
         ]
@@ -33,7 +33,7 @@ export default {
     methods: {
         submitStripe() {
             this.stripe.redirectToCheckout({
-                lineItems: [{ price: process.env.VUE_APP_STRIPE_PRICE_ID, quantity: 1 }],  // Replace with actual price ID from Stripe
+                lineItems: [{ price: process.env.VUE_APP_STRIPE_PRICE_PROD_ID, quantity: 1 }],  // Replace with actual price ID from Stripe
                 mode: 'subscription',
                 successUrl: window.location.origin + '/success',  // Set success page
                 cancelUrl: window.location.origin + '/cancel',  // Set cancel page
@@ -45,7 +45,7 @@ export default {
                 });
         },
         async _loadStripe() {
-            this.stripe = await loadStripe(process.env.VUE_APP_STRIPE_API_KEY);
+            this.stripe = await loadStripe(process.env.VUE_APP_STRIPE_API_PROD_KEY);
         },
     },
 };

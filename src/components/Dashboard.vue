@@ -569,7 +569,7 @@ export default {
         },
         //generate ideas
         generateIdeas() {
-            const openaiAPI = process.env.VUE_APP_OPENAI_API_KEY;
+            const openaiAPI = process.env.VUE_APP_OPENAI_API_TEST_KEY;
             const userId = sessionStorage.getItem('userId');
 
             // Fetch the latest subscription status and ideasGenerated from Firestore
@@ -877,7 +877,7 @@ export default {
         // Generate ideas around trending topics
         generateIdeasAroundTrend(trend) {
             const userId = sessionStorage.getItem('userId');
-            const openaiAPI = process.env.VUE_APP_OPENAI_API_KEY;
+            const openaiAPI = process.env.VUE_APP_OPENAI_API_TEST_KEY;
 
             // Fetch the latest subscription status and ideasGenerated from Firestore
             // const usersRef = db.collection("users");
@@ -996,10 +996,10 @@ export default {
 
 
         handleSubscription() {
-            // const stripe = Stripe(process.env.VUE_APP_STRIPE_API_KEY);  // Securely accessing Stripe public key
+            // const stripe = Stripe(process.env.VUE_APP_STRIPE_API_PROD_KEY);  // Securely accessing Stripe public key
 
             // stripe.redirectToCheckout({
-            //     lineItems: [{ price: process.env.VUE_APP_STRIPE_PRICE_ID, quantity: 1 }],  // Replace with actual price ID from Stripe
+            //     lineItems: [{ price: process.env.VUE_APP_STRIPE_PRICE_PROD_ID, quantity: 1 }],  // Replace with actual price ID from Stripe
             //     mode: 'subscription',
             //     successUrl: window.location.origin + '/success',  // Set success page
             //     cancelUrl: window.location.origin + '/cancel',  // Set cancel page
