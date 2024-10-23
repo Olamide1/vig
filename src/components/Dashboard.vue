@@ -76,13 +76,28 @@
                 <!-- Trending Topics Section -->
                 <h3 class="title is-4">Trending Topics</h3>
 
+                 <!-- Filter Trending Topics -->
+                 <div class="field has-addons">
+                    <div class="control">
+                        <div class="select">
+                            <select v-model="selectedSource">
+                                <option value="">All Sources</option>
+                                <option value="Reddit">Reddit</option>
+                                <option value="TikTok">TikTok</option>
+                                <option value="Twitter">Twitter</option>
+                                <option value="News">News</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Loading Spinner for Trending Topics -->
                 <div v-if="loading" class="has-text-centered">
                     <button class="button is-loading is-large">Loading Topics...</button>
                 </div>
 
-                <ul v-if="!loading && trendingTopics.length" class="box trending-list">
-                    <li v-for="topic in limitedTrendingTopics" :key="topic.id" class="topic-item">
+                <ul v-if="!loading && filteredTrendingTopics.length" class="box trending-list">
+                    <li v-for="topic in filteredTrendingTopics" :key="topic.id" class="topic-item">
                         <h4 class="topic-title">{{ topic.title }}</h4>
                         <p class="topic-source">
                             <span v-if="topic.source === 'Reddit'" class="tag is-danger is-light">Reddit</span>
@@ -286,12 +301,29 @@ export default {
             feedbackSuccessMessage: '',
             loadingFeedback: false, // Default section, set to whatever makes sense for your app
             location: '',
+
+            selectedSource: '', // Add selected source for filtering
         }
 
     },
     computed: {
         limitedTrendingTopics() {
             return this.trendingTopics.slice(0, this.topicsToShow);
+        },
+
+        // Existing computed properties...
+ // Filter trending topics based on search term and selected source
+ filteredTrendingTopics() {
+            let topics = this.trendingTopics;
+
+
+            // Filter by selected source
+            if (this.selectedSource) {
+                topics = topics.filter(topic => topic.source === this.selectedSource);
+            }
+
+            // Limit the number of topics displayed
+            return topics.slice(0, this.topicsToShow);
         }
     },
     methods: {
