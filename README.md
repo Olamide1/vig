@@ -27,3 +27,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 Generate ideas button not working.
 TikTok data not working.
+
+
+### TODOs
+- Change the title so it's dynamic
+- Cache all api responses via firebase - to save cost
+- SEO by yours truely - Ola
