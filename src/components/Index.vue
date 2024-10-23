@@ -108,7 +108,7 @@
     <footer class="footer">
       <div class="content has-text-centered">
         <p>&copy; 2024 AI Viral Content Ideas | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-        <p>Connect with us on <a href="#">Twitter</a>, and <a href="/roadmap">Roadmap.</a></p>
+        <p>Connect with us on <a href="#!">Twitter</a>, and <a href="/roadmap">Roadmap.</a></p>
       </div>
     </footer>
 
@@ -122,35 +122,22 @@
 </template>
 
 <script>
+
 export default {
   name: 'IndexComponent',
   props: {
     msg: String
   },
-  metaInfo: {
-    title: 'AI Viral Idea Generator',
-    meta: [
-      {
-        name: 'description',
-        content: 'Home page for content ideas generators'
-      },
-      {
-        name: 'keywords',
-        content: 'content ideas for youtube, content ideas for instagram, content ideas generator, contant ideas ai,'+ 
-        'content ideas for instagram reels, content ideas for onlyfans.' + 'content ideas for Tiktok, content ideas for social media'
-      }
-    ]
-  },
   data() {
     return {
       headline: "Generate Viral Content Ideas in Seconds!",
       subHeadline: "Effortlessly create content ideas tailored to your platform and audience based on real time trends with zero effort!",
-      ctaText: "Get Your 5 Viral Ideas – Free!",
+      ctaText: "Get Your 5 Viral Ideas - Free!",
       ctaSubText: "No commitment. Test the power of AI-generated content for free and unlock your potential.",
       valueProps: [
         { title: "Content Ideas That Drive Engagement", description: "Instantly generate AI-powered content ideas tailored to your platform, niche, and audience. Stand out with posts that resonate." },
         { title: "Always Up-to-Date Trends", description: "Our AI analyzes the latest trending topics from multiple sources like the news, Tiktok and Reddit, ensuring your content is always fresh and relevant." },
-        { title: "Personalized to You", description: "The more you use it, the smarter it gets. Our AI learns your preferences to deliver ideas perfectly aligned with your audience’s interests." }
+        { title: "Personalized to You", description: "The more you use it, the smarter it gets. Our AI learns your preferences to deliver ideas perfectly aligned with your audience's interests." }
       ],
       steps: [
         { title: "Sign Up and Set Your Preferences", description: "Create a free account and tell us about your platform, niche,target location and audience to start generating." },
@@ -159,7 +146,7 @@ export default {
       ],
       testimonials: [
         { quote: "This tool gave me my next viral YouTube video idea! My engagement has skyrocketed.", author: "YouTuber with 50K subscribers" },
-        { quote: "I went from idea drought to a full content calendar. It’s a game-changer!", author: "TikTok Creator" }
+        { quote: "I went from idea drought to a full content calendar. It's a game-changer!", author: "TikTok Creator" }
       ],
       showScrollTop: false,  // To control visibility of scroll-to-top button
 
