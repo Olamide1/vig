@@ -1,5 +1,6 @@
 {
-  "name": "v-hole",
+  "name": "vig",
+  "displayName": "AI Viral Content Idea Generator",
   "version": "0.1.0",
   "private": true,
   "scripts": {

@@ -1,4 +1,4 @@
-# v-hole
+# Vig (Viral Ideas Generator)
 
 ## Project setup
 ```
