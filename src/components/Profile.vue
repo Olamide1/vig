@@ -9,7 +9,7 @@
                     <div class="field">
                         <label class="label">Nickname</label>
                         <div class="control">
-                            <input class="input" type="text" v-model="nickname" placeholder="Enter your nickname">
+                            <input class="input" type="text" v-model="nickname" placeholder="Enter your a nickname we can address you with">
                         </div>
                     </div>
 

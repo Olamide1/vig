@@ -43,7 +43,7 @@
         </div>
         <br>
         <a href="/login" class="button is-large is-primary is-centered">Create ideas in seconds</a> <br> <br>
-        <a href="roadmap.html" class="button is-large is-link is-centered">Check our roadmap</a>
+        <a href="/roadmap" class="button is-large is-link is-centered">Check our roadmap</a>
       </div>
 
 

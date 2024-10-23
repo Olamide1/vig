@@ -592,7 +592,11 @@ export default {
 
                         this.loading = true; // Start loading state
 
-                        const prompt = `Generate 5 viral & creative content ideas for ${this.platform} related to ${this.niche} that would appeal to an audience of ${this.audience}. Provide creative titles, descriptions, and relevant hashtags for each idea.`;
+                        const prompt = `Generate 5 highly engaging and viral content ideas for ${this.platform}, targeting an audience interested in ${this.niche}. 
+                        The ideas should appeal to an audience that enjoys ${this.niche} content (e.g., humor, tutorials, emotional stories) and be designed to increase shares and comments. 
+                        Provide creative titles, a short description for each idea, and 3-5 relevant hashtags. 
+                        Where possible, tie the ideas to current social media trends or popular challenges in ${this.niche}. 
+                        The goal is to create content that prompts audience interaction and increases follower engagement.`;
 
                         fetch('https://api.openai.com/v1/chat/completions', {
                             method: 'POST',
@@ -899,7 +903,11 @@ export default {
 
                         this.loading = true; // Start loading state
 
-                        const prompt = `Generate 5 viral & creative content ideas for ${this.platform} related to ${trend.title} that would appeal to an audience of ${this.audience}. Provide creative titles, descriptions, and relevant hashtags for each idea.`;
+                        const prompt = `Generate 5 highly engaging and viral content ideas for ${this.platform}, inspired by the trending topic "${trend.title}". 
+                        These ideas should be tailored to an audience interested in ${this.audience} and designed to maximize interaction and shares. 
+                        Each idea should include a catchy title, a brief description that encourages engagement, and 3-5 relevant hashtags. 
+                        The ideas should be creative, unique, and aligned with current content trends or challenges on ${this.platform}. 
+                        Focus on content that sparks discussion, encourages user participation, or ties into existing viral moments.`;
 
                         fetch('https://api.openai.com/v1/chat/completions', {
                             method: 'POST',
