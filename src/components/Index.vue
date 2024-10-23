@@ -108,7 +108,7 @@
     <footer class="footer">
       <div class="content has-text-centered">
         <p>&copy; 2024 AI Viral Content Ideas | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-        <p>Connect with us on <a href="#">Twitter</a>, and <a href="roadmap.html">Roadmap.</a></p>
+        <p>Connect with us on <a href="#">Twitter</a>, and <a href="/roadmap">Roadmap.</a></p>
       </div>
     </footer>
 
@@ -126,6 +126,20 @@ export default {
   name: 'IndexComponent',
   props: {
     msg: String
+  },
+  metaInfo: {
+    title: 'AI Viral Idea Generator',
+    meta: [
+      {
+        name: 'description',
+        content: 'Home page for content ideas generators'
+      },
+      {
+        name: 'keywords',
+        content: 'content ideas for youtube, content ideas for instagram, content ideas generator, contant ideas ai,'+ 
+        'content ideas for instagram reels, content ideas for onlyfans.' + 'content ideas for Tiktok, content ideas for social media'
+      }
+    ]
   },
   data() {
     return {

@@ -106,6 +106,19 @@
 <script>
 export default {
     name: 'RoadmapComponent',
+    metaInfo: {
+    title: 'AI Viral Idea Generator Roadmap',
+    meta: [
+      {
+        name: 'description',
+        content: 'Roadmap for content ideas generators'
+      },
+      {
+        name: 'keywords',
+        content: 'content ideas for youtube, content ideas for instagram, content ideas generator, contant ideas ai, content ideas for instagram reels, content ideas for onlyfans.'
+      }
+    ]
+  },
 }
 </script>
 

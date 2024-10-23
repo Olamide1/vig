@@ -80,6 +80,19 @@
 import { db, serverTimestamp, addDoc, collection } from '../firebase/init'
 export default {
     name: 'FeedbackComponent',
+     metaInfo: {
+    title: 'AI Viral Idea Generator Feedback',
+    meta: [
+      {
+        name: 'description',
+        content: 'Feedback for vig'
+      },
+      {
+        name: 'keywords',
+        content: 'content ideas for youtube, content ideas for instagram, content ideas generator, contant ideas ai, content ideas for instagram reels, content ideas for onlyfans.'
+      }
+    ]
+  },
 
     data() {
         return {
