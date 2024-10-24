@@ -95,8 +95,8 @@ export default {
                 signInWithEmailLink(auth, email, window.location.href)
                     .then(result => {
                         window.localStorage.removeItem('emailForSignIn');
-                        // Store user ID in sessionStorage
-                        sessionStorage.setItem('userId', result.user.uid);
+                        // Store user ID in localStorage
+                        localStorage.setItem('userId', result.user.uid);
                         this.checkUserProfile(result.user.uid);
                     })
                     .catch(error => {
@@ -110,8 +110,8 @@ export default {
             const provider = new GoogleAuthProvider();
             signInWithPopup(auth, provider)
                 .then(result => {
-                    // Store user ID in sessionStorage
-                    sessionStorage.setItem('userId', result.user.uid);
+                    // Store user ID in localStorage
+                    localStorage.setItem('userId', result.user.uid);
                     this.checkUserProfile(result.user.uid);
                 })
                 .catch(error => {

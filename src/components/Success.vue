@@ -15,7 +15,7 @@ export default {
 
     methods: {
         updateSubscriptionStatus() {
-            const userId = sessionStorage.getItem('userId');
+            const userId = localStorage.getItem('userId');
             if (userId) {
                 // db.collection('users').doc(userId).
                 // update({
