@@ -332,7 +332,7 @@ export default {
         // Placeholder for future notification preference handling (currently commented out)
         /*
         saveNotificationPreferences() {
-            const userId = localStorage.getItem('userId');
+            const userId = sessionStorage.getItem('userId');
             if (userId) {
               db.collection('users').doc(userId).set({
                 notificationPreference: this.notificationPreference,
@@ -361,7 +361,7 @@ export default {
         // Get user notification preferences and other data on load
         getUserData() {
 
-            const userId = localStorage.getItem('userId');
+            const userId = sessionStorage.getItem('userId');
             if (userId) {
                 const usersRef = doc(db, "users", userId);
                 getDoc(usersRef)
@@ -409,7 +409,7 @@ export default {
         },
 
         submitFeedback() {
-            const userId = localStorage.getItem('userId');
+            const userId = sessionStorage.getItem('userId');
             if (userId) {
                 this.loadingFeedback = true; // Start loading spinner
 
@@ -470,7 +470,7 @@ export default {
 
 
         markAsFavorite(idea) {
-            const userId = localStorage.getItem('userId');
+            const userId = sessionStorage.getItem('userId');
             this.loading = true; // Start loading state
 
             // Ensure that the required fields exist before saving
@@ -572,7 +572,7 @@ export default {
 
         // Save User Preferences in Firestore
         savePreferences() {
-            const userId = localStorage.getItem('userId');
+            const userId = sessionStorage.getItem('userId');
             if (userId) {
 
 
@@ -602,7 +602,7 @@ export default {
         //generate ideas
         generateIdeas() {
             const openaiAPI = process.env.VUE_APP_OPENAI_API_TEST_KEY;
-            const userId = localStorage.getItem('userId');
+            const userId = sessionStorage.getItem('userId');
 
             // Fetch the latest subscription status and ideasGenerated from Firestore
             // const usersRef = db.collection("users");
@@ -700,7 +700,7 @@ export default {
 
         // Store Generated Ideas in Firestore
         storeIdeasInFirestore(ideas) {
-            const userId = localStorage.getItem('userId');
+            const userId = sessionStorage.getItem('userId');
             if (userId) {
 
                 const userDocRef = doc(db, 'users', userId);
@@ -724,7 +724,7 @@ export default {
         // Logout Function
         logout() {
             signOut(auth).then(() => {
-                localStorage.removeItem('userId'); // Clear user session data
+                sessionStorage.removeItem('userId'); // Clear user session data
                 window.location.href = '/login'; // Redirect to login page
             }).catch(error => {
                 console.error('Error logging out:', error);
@@ -765,8 +765,8 @@ export default {
             this.loading = true; // Start loading state
 
             // Check for cached TikTok and Twitter data
-            let cachedTikTok = JSON.parse(localStorage.getItem('tiktokCache'));
-            let cachedTwitter = JSON.parse(localStorage.getItem('twitterCache'));
+            let cachedTikTok = JSON.parse(sessionStorage.getItem('tiktokCache'));
+            let cachedTwitter = JSON.parse(sessionStorage.getItem('twitterCache'));
 
             // Validate if cached TikTok data is still valid (within 7 days duration)
             if (cachedTikTok && (now - cachedTikTok.timestamp < cacheDuration) && !this.isSubscribed) {
@@ -800,7 +800,7 @@ export default {
                     .then(tiktokData => {
                         // if (!this.isSubscribed) {} // doesn't need this if to cache
                         if (!this.isSubscribed ) { // tiktokData?.code !== -1
-                            localStorage.setItem('tiktokCache', JSON.stringify({
+                            sessionStorage.setItem('tiktokCache', JSON.stringify({
                                 timestamp: now,
                                 data: tiktokData
                             }));
@@ -819,7 +819,7 @@ export default {
                 }).then(response => response.json())
                     .then(twitterData => {
                         if (!this.isSubscribed) {
-                            localStorage.setItem('twitterCache', JSON.stringify({
+                            sessionStorage.setItem('twitterCache', JSON.stringify({
                                 timestamp: now,
                                 data: twitterData
                             }));
@@ -912,7 +912,7 @@ export default {
 
         // Generate ideas around trending topics
         generateIdeasAroundTrend(trend) {
-            const userId = localStorage.getItem('userId');
+            const userId = sessionStorage.getItem('userId');
             const openaiAPI = process.env.VUE_APP_OPENAI_API_TEST_KEY;
 
             // Fetch the latest subscription status and ideasGenerated from Firestore
@@ -1008,7 +1008,7 @@ export default {
         },
         // After successful payment, mark user as subscribed
         handlePaymentSuccess() {
-            const userId = localStorage.getItem('userId');
+            const userId = sessionStorage.getItem('userId');
 
             // const usersRef = db.collection("users");
             // usersRef.doc(userId).update({
@@ -1057,7 +1057,7 @@ export default {
     },
 
     created() {
-        const userId = localStorage.getItem('userId');
+        const userId = sessionStorage.getItem('userId');
         if (userId) {
             this.getUserData();
             this.loadFavoriteIdeas(userId); // Load favorite ideas when dashboard loads

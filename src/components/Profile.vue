@@ -42,7 +42,7 @@ export default {
     methods: {
         // Save user profile (nickname) in Firestore
         saveProfile() {
-            const userId = localStorage.getItem('userId'); // Get user ID from localStorage
+            const userId = sessionStorage.getItem('userId'); // Get user ID from sessionStorage
             if (userId && this.nickname.trim()) {
                 // Check for unique nickname in Firestore
                 db.collection('users').where('nickname', '==', this.nickname).get()

@@ -104,7 +104,7 @@ export default {
     },
     methods: {
         submitFeedback() {
-            const userId = localStorage.getItem('userId') || 'guest'; // Fallback to 'guest' user if not logged in
+            const userId = sessionStorage.getItem('userId') || 'guest'; // Fallback to 'guest' user if not logged in
 
             if (this.feedbackMessage.trim() === '') {
                 alert('Please enter your feedback');

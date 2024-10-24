@@ -74,7 +74,7 @@ export default {
             sendSignInLinkToEmail(auth, this.email, actionCodeSettings)
                 .then(() => {
                     // Save the email locally to complete sign-in after clicking the link
-                    window.localStorage.setItem('emailForSignIn', this.email);
+                    window.sessionStorage.setItem('emailForSignIn', this.email);
                     this.loading = false;
                     alert('A login link has been sent to your email. Please check your inbox.');
                 })
@@ -87,16 +87,16 @@ export default {
         // Check for sign-in link in the URL
         completeSignIn() {
             if (isSignInWithEmailLink(auth, window.location.href)) {
-                let email = window.localStorage.getItem('emailForSignIn');
+                let email = window.sessionStorage.getItem('emailForSignIn');
                 if (!email) {
                     email = window.prompt('Please provide your email for confirmation');
                 }
 
                 signInWithEmailLink(auth, email, window.location.href)
                     .then(result => {
-                        window.localStorage.removeItem('emailForSignIn');
-                        // Store user ID in localStorage
-                        localStorage.setItem('userId', result.user.uid);
+                        window.sessionStorage.removeItem('emailForSignIn');
+                        // Store user ID in sessionStorage
+                        sessionStorage.setItem('userId', result.user.uid);
                         this.checkUserProfile(result.user.uid);
                     })
                     .catch(error => {
@@ -110,8 +110,8 @@ export default {
             const provider = new GoogleAuthProvider();
             signInWithPopup(auth, provider)
                 .then(result => {
-                    // Store user ID in localStorage
-                    localStorage.setItem('userId', result.user.uid);
+                    // Store user ID in sessionStorage
+                    sessionStorage.setItem('userId', result.user.uid);
                     this.checkUserProfile(result.user.uid);
                 })
                 .catch(error => {
