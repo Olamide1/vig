@@ -30,6 +30,10 @@ TikTok data not working.
 
 
 ### TODOs
-- Change the title so it's dynamic
-- Cache all api responses via firebase - to save cost
-- SEO by yours truely - Ola
+- ~Change the title so it's dynamic~
+- Cache all api responses via firebase - to save cost @Chuks
+- ~SEO by yours truely - Ola~
+- After registration, customer should get better guidance on how to update their preference for them to be able to use their free trial.
+- A message to show when the response is empty for Trending Topics.
+- Put some education in the platform to educate customers.
+    - for instance, ... we're generating 5 ideas per request because 1 idea is not enough to fit your brand identity/trend.

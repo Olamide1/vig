@@ -618,7 +618,7 @@ export default {
                         this.ideasGenerated = userData.ideasGenerated || 0;
 
                         // Check if the user has exceeded the idea limit
-                        if (!this.isSubscribed && this.ideasGenerated + 5 >= this.ideaLimit) {
+                        if (!this.isSubscribed && this.ideasGenerated >= this.ideaLimit) {
                             this.showSubscriptionPrompt = true; // Show subscription prompt if limit is reached
                             return;
                         }
