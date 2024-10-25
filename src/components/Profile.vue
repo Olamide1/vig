@@ -30,8 +30,9 @@
 <script>
 import { db, auth, onAuthStateChanged,
     where, query,
-    getDoc, doc, collection,
-    setDoc
+    doc, collection,
+    setDoc,
+    getDocs
 } from '../firebase/init'
 export default {
     name: 'ProfileComponent',
@@ -54,7 +55,7 @@ export default {
 
                 const usersRef = collection(db, 'users');
                 const q = query(usersRef, where('nickname', '==', this.nickname));
-                getDoc(q)
+                getDocs(q)
                 .then(querySnapshot => {
                         if (querySnapshot.empty) {
                             // Save nickname if unique
