@@ -125,9 +125,9 @@ export default {
             const usersRef = doc(db, "users", userId);
                 getDoc(usersRef)
                 .then(doc => {
-                    if (doc.exists) {
+                    if (doc.exists()) {
                         // Check if profile is complete (nickname exists)
-                        if (doc.data().nickname) {
+                        if (doc.data()?.nickname) {
                             // Check for subscription status and ideasGenerated fields
                             if (!doc.data()?.isSubscribed) {
                                 // db.collection('users').doc(userId)
