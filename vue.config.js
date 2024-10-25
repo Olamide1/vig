@@ -12,7 +12,6 @@ const paths = [
   { path: '/roadmap', lastmod: new Date().toISOString(), priority: 0.8 },
   { path: '/success', lastmod: new Date().toISOString(), priority: 0.8 },
   { path: '/login', lastmod: new Date().toISOString(), priority: 0.7 },
-  { path: '/about', lastmod: new Date().toISOString(), priority: 0.7 }
 ];
 
 module.exports = defineConfig({
