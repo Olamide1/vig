@@ -25,6 +25,13 @@
 
         <!-- Main Dashboard Content -->
         <main class="dashboard-content">
+            <div v-if="!preferencesSaved && showGuide" class="notification is-info">
+    <h2 class="title is-5">Welcome to Your Dashboard {{ nickname }}!</h2>
+    <p>To get the best experience, start by setting your personalization <a href="#" v-if="activeSection === 'preferences'">preferences</a>. Then, use the 'Generate Ideas' button to receive 5 tailored content ideas aligning with trends and your brand identity.</p>
+    <button @click="showGuide = false" class="delete"></button>
+</div>
+
+
             <!-- Overview Section -->
             <section v-if="activeSection === 'overview'">
                 <h1 class="title">Good {{ timeOfDay }}, {{ nickname }}!</h1>
@@ -301,7 +308,7 @@ export default {
             feedbackSuccessMessage: '',
             loadingFeedback: false, // Default section, set to whatever makes sense for your app
             location: '',
-
+            showGuide: true, 
             selectedSource: '', // Add selected source for filtering
         }
 
