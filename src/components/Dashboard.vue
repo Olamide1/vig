@@ -366,7 +366,7 @@ export default {
                 const usersRef = doc(db, "users", userId);
                 getDoc(usersRef)
                     .then(_doc => {
-                        if (_doc.exists) {
+                        if (_doc.exists()) {
                             const data = _doc.data();
                             // Check for missing fields and update if necessary
                             if (!data?.isSubscribed || !data?.ideasGenerated) {
@@ -445,9 +445,10 @@ export default {
         loadSavedIdeas(userId) {
             const usersRef = doc(db, "users", userId);
             getDoc(usersRef)
-                .then(doc => {
-                    if (doc.exists && doc.data().contentIdeas) {
-                        this.savedIdeas = doc.data().contentIdeas;
+                .then(_doc => {
+                    const _contentIdeas = _doc.data()?.contentIdeas
+                    if (_doc.exists() && _contentIdeas) {
+                        this.savedIdeas = _contentIdeas;
                     }
                 })
                 .catch(error => {
