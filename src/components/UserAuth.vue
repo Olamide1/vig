@@ -128,7 +128,7 @@ export default {
                 .then(_doc => {
                     if (_doc.exists()) {
                         // Check if profile is complete (nickname exists)
-                        if (doc.data()?.nickname) {
+                        if (_doc.data()?.nickname) {
                             // Check for subscription status and ideasGenerated fields
                             if (!_doc.data()?.isSubscribed) {
                                 // db.collection('users').doc(userId)
