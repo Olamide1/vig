@@ -50,7 +50,7 @@ import { db, auth,
     GoogleAuthProvider, isSignInWithEmailLink, 
     signInWithEmailLink, signInWithPopup,
     sendSignInLinkToEmail, doc, getDoc, 
-    updateDoc,
+    updateDoc, collection,
     setDoc
 } from '../firebase/init'
 export default {
