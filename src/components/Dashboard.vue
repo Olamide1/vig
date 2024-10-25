@@ -458,62 +458,58 @@ export default {
 
         // Load favorite content ideas from the Firestore subcollection
         loadFavoriteIdeas(userId) {
-            const userFavoritesRef = collection(db, 'users', userId, 'favorites');
+    const userFavoritesRef = collection(db, 'users', userId, 'favorites');
 
-            getDocs(userFavoritesRef)
-                .then(snapshot => {
-                    this.favoriteIdeas = snapshot.docs.map(doc => doc.data());
-                })
-                .catch(error => {
-                    console.error('Error fetching favorite ideas:', error);
-                });
-        },
+    getDocs(userFavoritesRef)
+        .then(snapshot => {
+            this.favoriteIdeas = snapshot.docs.map(doc => ({
+                id: doc.id,  // Capture the document ID in case we need it
+                ...doc.data()
+            }));
+        })
+        .catch(error => {
+            console.error('Error fetching favorite ideas:', error);
+        });
+},
 
 
         markAsFavorite(idea) {
-            const userId = sessionStorage.getItem('userId');
-            this.loading = true; // Start loading state
+    const userId = sessionStorage.getItem('userId');
+    this.loading = true; // Start loading state
 
-            // Ensure that the required fields exist before saving
-            if (idea && idea.title && idea.content && idea.hashtags) {
-                if (userId) {
-                    // const usersRef = db.collection("users");
-                    // usersRef.doc(userId).collection('favorites')
-                    // .add({
-                    //     title: idea.title,
-                    //     content: idea.content,
-                    //     hashtags: idea.hashtags
-                    // })
+    // Ensure that the required fields exist before saving
+    if (idea && idea.title && idea.content && idea.hashtags) {
+        if (userId) {
+            const userFavoritesRef = collection(db, 'users', userId, 'favorites');
 
-                    addDoc(collection(db, "favorites"), {
-                        title: idea.title,
-                        content: idea.content,
-                        hashtags: idea.hashtags
-                    })
-                        .then(() => {
-                            this.successMessage = 'Content idea has been added to favorites!';
-                            setTimeout(() => {
-                                this.successMessage = '';
-                            }, 3000);
-                            this.loadFavoriteIdeas(userId); // Reload favorites
-                        })
-                        .catch(error => {
-                            console.error('Error marking as favorite:', error);
-                        }).finally(() => {
-                            this.loading = false; // Stop loading state
-                        });
-                }
-            } else {
-                // Provide more detail on missing fields
-                console.error('Invalid idea object. Missing fields:', {
-                    title: idea.title,
-                    content: idea.content,
-                    hashtags: idea.hashtags
-                });
-                alert('There was an issue saving this idea. Please make sure the idea contains a title, content, and hashtags.');
-                this.loading = false; // Stop loading state if validation fails
-            }
-        },
+            addDoc(userFavoritesRef, {
+                title: idea.title,
+                content: idea.content,
+                hashtags: idea.hashtags
+            })
+            .then(() => {
+                this.successMessage = 'Content idea has been added to favorites!';
+                setTimeout(() => {
+                    this.successMessage = '';
+                }, 3000);
+                this.loadFavoriteIdeas(userId); // Reload favorites
+            })
+            .catch(error => {
+                console.error('Error marking as favorite:', error);
+            }).finally(() => {
+                this.loading = false; // Stop loading state
+            });
+        }
+    } else {
+        console.error('Invalid idea object. Missing fields:', {
+            title: idea.title,
+            content: idea.content,
+            hashtags: idea.hashtags
+        });
+        alert('There was an issue saving this idea. Please make sure the idea contains a title, content, and hashtags.');
+        this.loading = false; // Stop loading state if validation fails
+    }
+},
         shareOnTwitter(idea) {
             const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(idea.title + ' - ' + idea.content)}&url=${encodeURIComponent('https://your-platform-url.com')}&hashtags=${encodeURIComponent(idea.hashtags)}`;
             window.open(twitterUrl, '_blank');
