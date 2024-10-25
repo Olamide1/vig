@@ -50,7 +50,8 @@ import { db, auth,
     GoogleAuthProvider, isSignInWithEmailLink, 
     signInWithEmailLink, signInWithPopup,
     sendSignInLinkToEmail, doc, getDoc, 
-    updateDoc
+    updateDoc,
+    setDoc
 } from '../firebase/init'
 export default {
     name: 'UserAuthComponent',
@@ -124,12 +125,12 @@ export default {
             // db.collection('users').doc(userId).get()
             const usersRef = doc(db, "users", userId);
                 getDoc(usersRef)
-                .then(doc => {
-                    if (doc.exists()) {
+                .then(_doc => {
+                    if (_doc.exists()) {
                         // Check if profile is complete (nickname exists)
                         if (doc.data()?.nickname) {
                             // Check for subscription status and ideasGenerated fields
-                            if (!doc.data()?.isSubscribed) {
+                            if (!_doc.data()?.isSubscribed) {
                                 // db.collection('users').doc(userId)
                                 
                                 updateDoc(usersRef, {
@@ -143,7 +144,10 @@ export default {
                         }
                     } else {
                         // If no document exists, create one
-                        db.collection('users').doc(userId).set({
+
+                        const userRef = doc(collection(db, 'users'), userId);
+
+                        setDoc(userRef, {
                             isSubscribed: false,
                             ideasGenerated: 0
                         });

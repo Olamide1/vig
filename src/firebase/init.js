@@ -3,7 +3,7 @@ import {
     getFirestore,
     collection, doc, setDoc,
     serverTimestamp, getDoc, getDocs,
-    updateDoc, addDoc
+    updateDoc, addDoc, where, query
 } from "firebase/firestore";
 import {
     getAuth, GoogleAuthProvider, isSignInWithEmailLink,
@@ -34,7 +34,9 @@ export {
     signInWithEmailLink, signInWithPopup, signOut,
     onAuthStateChanged, sendSignInLinkToEmail,
 
-    collection, doc, setDoc, getDoc, updateDoc, addDoc, getDocs
+    collection, doc, setDoc, getDoc, updateDoc, addDoc, getDocs,
+
+    where, query,
 }
 
 export default db

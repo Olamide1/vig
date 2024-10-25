@@ -28,7 +28,11 @@
 </template>
 
 <script>
-import { db, auth, onAuthStateChanged } from '../firebase/init'
+import { db, auth, onAuthStateChanged,
+    where, query,
+    getDoc, doc, collection,
+    setDoc
+} from '../firebase/init'
 export default {
     name: 'ProfileComponent',
 
@@ -45,11 +49,19 @@ export default {
             const userId = sessionStorage.getItem('userId'); // Get user ID from sessionStorage
             if (userId && this.nickname.trim()) {
                 // Check for unique nickname in Firestore
-                db.collection('users').where('nickname', '==', this.nickname).get()
-                    .then(querySnapshot => {
+
+                // db.collection('users').where('nickname', '==', this.nickname).get()
+
+                const usersRef = collection(db, 'users');
+                const q = query(usersRef, where('nickname', '==', this.nickname));
+                getDoc(q)
+                .then(querySnapshot => {
                         if (querySnapshot.empty) {
                             // Save nickname if unique
-                            db.collection('users').doc(userId).set({ nickname: this.nickname }, { merge: true })
+                            // db.collection('users').doc(userId).set({ nickname: this.nickname }, { merge: true })
+
+                            const userRef = doc(db, 'users', userId);
+                            setDoc(userRef, { nickname: this.nickname }, { merge: true })
                                 .then(() => {
                                     this.successMessage = 'Your profile has been updated successfully!';
                                     setTimeout(() => {
